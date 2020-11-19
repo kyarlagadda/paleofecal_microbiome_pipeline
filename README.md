@@ -24,4 +24,24 @@ Reads are first filtered against a human microbiome database ([KneadData](https:
 
 ### Profiling
 
-Profiling is done in [MetaPhlAn](https://github.com/biobakery/biobakery/wiki/metaphlan2) with "-t rel_ab_w_read_stats" specified. After this, an OTU table is made using the attached R script, which makes this data easy to import/use in other contexts. Note that 
+Profiling is done in [MetaPhlAn](https://github.com/biobakery/biobakery/wiki/metaphlan2) with "-t rel_ab_w_read_stats" specified. Check that this file has two header lines (#SampleID and #clade_name) or edit to ensure that this is the case. If using MetaPhlAn 3, for example, a script like the following may help convert the header:
+
+```for f in *txt 
+ do 
+ sed -i '1d' $f
+ sed -i '1d' $f 
+ sed -i '2d' $f 
+ sed -i '3d' $f
+ done
+```
+
+After this, an OTU table is made using the attached R script, which makes this data easy to import/use in other contexts. Note that this R script can merge additional microbiome data into the total OTU table, so long as it fits 1 of 2 formats:
+
+1. It is a profile with taxa names similar to the MetaPhlAn outputs
+2. It is a profile with OTU's numbered instead of named, and has an associated table linking the OTU numbers to the taxonomic identifier
+
+These varying files can be placed in the PerSample (1) or Paired (2) folders that the script references. If no samples are being used in the Paired folder, leave a set of paired empty files there. Further, using the $estimated_number_of_reads_from_the_clade statement will generate an OTU table with read counts (better for alpha diversity calculations) while using $relative_abundance will generate an OTU table with relative abundance. 
+
+### Analyses
+
+SourceTracker can take the generated tables as an input. Some trimming may be necessary (the last column on merged_otu_lineage.txt is extraneous information, and if no paired samples are used, the empty sample column can be removed from both generated files).
