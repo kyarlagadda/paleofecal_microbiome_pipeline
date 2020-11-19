@@ -44,4 +44,6 @@ These varying files can be placed in the PerSample (1) or Paired (2) folders tha
 
 ### Analyses
 
-SourceTracker can take the generated tables as an input. Some trimming may be necessary (the last column on merged_otu_lineage.txt is extraneous information, and if no paired samples are used, the empty sample column can be removed from both generated files).
+[SourceTracker](https://github.com/danknights/sourcetracker) can take the generated tables as an input. Some trimming may be necessary (the last column on merged_otu_lineage.txt is extraneous information, and if no paired samples are used, the empty sample column can be removed from both generated files). A metadata file is needed (as per the layout indicated in SourceTracker at minimum).
+
+[Phyloseq](https://joey711.github.io/phyloseq/) requires a taxonomy table (merged_otus_lineage.txt), an OTU table (merged_otus.txt), and a metadata file. The editing done above is also useful for this import. This allows for easy tests on alpha diversity via the `plot_richness()` function. 
