@@ -12,7 +12,7 @@ This pipeline was made to analyze shotgun microbial read data, including OTU ass
   * [LEfSe](https://github.com/biobakery/biobakery/wiki/lefse)
 * [R](https://www.r-project.org/)
  * [SourceTracker](https://github.com/danknights/sourcetracker)
- * [phyloseq](https://joey711.github.io/phyloseq/)
+ * [phyloseq](https://github.com/joey711/phyloseq)
 
 Note that MetaPhlAn and HUMAnN have more updated versions than what is used here (version 3 as opposed to 2) that are generally functional in the described pipeline below, but may require a few additional tweaks to work exactly (i.e. MetaPhlAn 3 has additional lines in the profile output header that need to be trimmed for the downstream programs).
 
@@ -46,4 +46,16 @@ These varying files can be placed in the PerSample (1) or Paired (2) folders tha
 
 [SourceTracker](https://github.com/danknights/sourcetracker) can take the generated tables as an input. Some trimming may be necessary (the last column on merged_otu_lineage.txt is extraneous information, and if no paired samples are used, the empty sample column can be removed from both generated files). A metadata file is needed (as per the layout indicated in SourceTracker at minimum).
 
-[Phyloseq](https://joey711.github.io/phyloseq/) requires a taxonomy table (merged_otus_lineage.txt), an OTU table (merged_otus.txt), and a metadata file. The editing done above is also useful for this import. This allows for easy tests on alpha diversity via the `plot_richness()` function. 
+[Phyloseq](https://github.com/joey711/phyloseq) requires a taxonomy table (merged_otus_lineage.txt), an OTU table (merged_otus.txt), and a metadata file. The editing done above is also useful for this import. This allows for easy tests on alpha diversity via the `plot_richness()` function. Beta diversity can also be explored with `ordinate()` and `plot_ordination`.
+
+[LEfSe](https://github.com/biobakery/biobakery/wiki/lefse) can also use the generated merged_otus.txt file as an input. Replace the header lines with the sample name, class, and subclass as appropriate for the study.
+
+Finally, [HUMAnN](https://github.com/biobakery/biobakery/wiki/humann2) can be run on the original FASTQ (ideally trimmed and filtered) files. This generates multiple table outputs (gene family abundance, pathway abundance, and pathway coverage). There are multiple settings and options to edit here, including databases for alignment, thresholds, post-processing (how tables are sorted), that may all be altered depending on the study conditions. Normalized and stratified tables are similar in organization to the OTU tables produced earlier, and can be used as inputs for other analyses above if appropriate for the study.
+
+### Citations
+
+Knights, D. et al. 2011. Bayesian community-wide culture-independent microbial source tracking. Nature Methods, 8, 9, 761-763. [Paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3791591/)
+
+McIver LJ, Abu-Ali G, Franzosa EA, Schwager R, Morgan XC, Waldron L, Segata N, Huttenhower C. bioBakery: a meta'omic analysis environment. Bioinformatics. 2018 Apr 1;34(7):1235-1237. [PMID: 29194469](https://pubmed.ncbi.nlm.nih.gov/29194469/)
+
+McMurdie and Holmes (2013) phyloseq: An R package for reproducible interactive analysis and graphics of microbiome census data PLoS ONE 8(4):e61217 [Paper](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0061217)
