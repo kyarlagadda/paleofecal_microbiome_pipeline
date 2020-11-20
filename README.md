@@ -35,7 +35,7 @@ Profiling is done in [MetaPhlAn](https://github.com/biobakery/biobakery/wiki/met
  done
 ```
 
-After this, an OTU table is made using the attached R script, which makes this data easy to import/use in other contexts. Note that this R script can merge additional microbiome data into the total OTU table, so long as it fits 1 of 2 formats:
+After this, an OTU table is made using [this R script](merge.table.R), which makes this data easy to import/use in other contexts. Note that this R script can merge additional microbiome data into the total OTU table, so long as it fits 1 of 2 formats:
 
 1. It is a profile with taxa names similar to the MetaPhlAn outputs
 2. It is a profile with OTU's numbered instead of named, and has an associated table linking the OTU numbers to the taxonomic identifier
