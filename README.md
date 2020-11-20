@@ -11,8 +11,8 @@ This pipeline was made to analyze shotgun microbial read data, including OTU ass
   * [HUMAnN](https://github.com/biobakery/biobakery/wiki/humann2)
   * [LEfSe](https://github.com/biobakery/biobakery/wiki/lefse)
 * [R](https://www.r-project.org/)
- * [SourceTracker](https://github.com/danknights/sourcetracker)
- * [phyloseq](https://github.com/joey711/phyloseq)
+  * [SourceTracker](https://github.com/danknights/sourcetracker)
+  * [phyloseq](https://github.com/joey711/phyloseq)
 * [HOPS](https://github.com/rhuebler/HOPS)
 
 Note that MetaPhlAn and HUMAnN have more updated versions than what is used here (version 3 as opposed to 2) that are generally functional in the described pipeline below, but may require a few additional tweaks to work exactly (i.e. MetaPhlAn 3 has additional lines in the profile output header that need to be trimmed for the downstream programs).
